@@ -1,8 +1,5 @@
-
-import json
 import logging
 from bs4 import BeautifulSoup
-
 soup_parser = "html5lib"
 try:
     import html5lib
@@ -71,13 +68,3 @@ def parse_tables(html_content):
             if data:
                 stats.update(data)
     return stats
-
-
-if __name__ == '__main__':
-    with open("cli/network_setup.html") as ht:
-        soup = BeautifulSoup(ht.read(), "html5lib")
-
-    data = parse_tables(soup)
-    print(json.dumps(data, indent=2))
-    print(data.keys())
-
