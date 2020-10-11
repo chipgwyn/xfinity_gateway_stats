@@ -26,6 +26,9 @@ class Session(object):
             'password': self.password,
         }
         result = self.post(page="check.php", data=auth).status_code
+        if result != 200:
+            logging.error(f"Login Failed!")
+            exit(1)
 
     def xfinity_network(self, page="network_setup.php"):
         return parse_tables(self.session.get(f"{self.base_url}/{page}").content)
